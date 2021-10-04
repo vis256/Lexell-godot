@@ -1,0 +1,69 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://assets/new_dynamicfont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Main.gd" type="Script" id=2]
+[ext_resource path="res://Wall.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Roof.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/StartHelper.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/Background.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/bg/black.jpg" type="Texture" id=7]
+
+[sub_resource type="Theme" id=1]
+default_font = ExtResource( 1 )
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.128052
+margin_top = 0.457306
+margin_right = 0.128052
+margin_bottom = 0.457275
+rect_pivot_offset = Vector2( 493.434, 865.15 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Wall" parent="." instance=ExtResource( 3 )]
+position = Vector2( 0.234901, 13.8421 )
+
+[node name="Wall2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1098.24, -2.9746 )
+
+[node name="Roof" parent="." instance=ExtResource( 4 )]
+position = Vector2( 130.685, -0.0698799 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_top = 1835.0
+margin_right = 1080.0
+margin_bottom = 1875.0
+theme = SubResource( 1 )
+bbcode_enabled = true
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BulletLabel" type="RichTextLabel" parent="."]
+margin_top = 1795.0
+margin_right = 1080.0
+margin_bottom = 1835.0
+theme = SubResource( 1 )
+bbcode_enabled = true
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StartHelper" parent="." instance=ExtResource( 5 )]
+position = Vector2( -381.895, 184.888 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="StarBackground" parent="." instance=ExtResource( 6 )]
+position = Vector2( -10.4695, -11.3626 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 544.286, 972.66 )
+scale = Vector2( 18.0089, 31.3956 )
+z_index = -2
+texture = ExtResource( 7 )
