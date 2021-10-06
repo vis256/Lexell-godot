@@ -101,31 +101,40 @@ func pOneElemPerRowWithRandomX(world, blueprint):
 	var structure = blueprint[2]
 	var rx = []
 	var foundPlace = true
+	var foundx
 	for row in range(len(world)):
-		foundPlace = true
 		for x in range(chunkWidth):
 			rx.append(x)
 		rx.shuffle()
 		for x in rx:
+			foundPlace = true
+			#print("checking ", row, " x = ", x)
 			for i in range(len(structure)):
 				for j in range(len(structure[0])):
 					if row+i < chunkHeight and x+j < chunkWidth:
 						if typeof(world[row+i][x+j]) != 2:
 							foundPlace = false
+							foundx = null
 					else:
 						foundPlace = false
+						foundx = null
 				if !foundPlace:
 					break
+					foundx = null
 			if foundPlace:
-				for i in range(len(structure)):
-					for j in range(len(structure[0])):
-						if structure[i][j] != null:
-							if typeof(structure[i][j]) != 2:
-								world[row+i][x+j] = [] + structure[i][j]
-							else:
-								world[row+i][x+j] = 0
+				foundx = x
+				break
+		if foundx != null:
+			#print("found place ", row, " ", foundx)
+			for i in range(len(structure)):
+				for j in range(len(structure[0])):
+					if structure[i][j] != null:
+						if typeof(structure[i][j]) != 2:
+							world[row+i][foundx+j] = [] + structure[i][j]
 						else:
-							world[row+i][x+j] = null
+							world[row+i][foundx+j] = 0
+					else:
+						world[row+i][foundx+j] = null
 	return world
 
 func newData(region):
